@@ -1,6 +1,6 @@
 import models from "./database.models.js";
 
-const {product} = models;
+const {product,category} = models;
 
 class DAO{
     constructor(){
@@ -54,6 +54,15 @@ class DAO{
             });
         }catch(error){
             throw(error);
+        }
+    }
+
+    async fetchCategory(cb){
+        try{
+            const categorys = await category.find().lean();
+            cb(categorys);
+        }catch(err){
+            throw(err);
         }
     }
 }

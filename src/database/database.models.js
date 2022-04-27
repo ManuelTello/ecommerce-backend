@@ -10,7 +10,12 @@ const product_schema = new mongoose.Schema({
     image:{type:String,default:"product_default.png"}
 });
 
+const categorys_schema = new mongoose.Schema({
+    name:{type:String,required:true},
+    subcat:{type:[String],required:false,default:[]},
+});
+
 export default {
     product : new mongoose.model("products",product_schema),
-
+    category : new mongoose.model("categorys",categorys_schema),
 };
