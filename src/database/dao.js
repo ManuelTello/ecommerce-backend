@@ -1,6 +1,6 @@
 import models from "./database.models.js";
 
-const {product,category} = models;
+const {product, category, user} = models;
 
 class DAO{
     constructor(){
@@ -61,6 +61,52 @@ class DAO{
         try{
             const categorys = await category.find().lean();
             cb(categorys);
+        }catch(err){
+            throw(err);
+        }
+    }
+
+    async returnAllUsers(cb){
+        try{
+            const users = await user.find({}).lean();
+            cb(users);
+        }catch(err){
+            throw(err)
+        }
+    }
+
+    async returnUser(email,cb){
+        try{
+            const user_find = await user.find({email:email}).lean();
+            cb(user_find);
+        }catch(err){
+            throw(err)
+        }
+    }
+
+    async deleteUser(uid, done){
+        try{
+            const del_op = await user.deleteOne({uid:uid});
+            done(del_op.deletedCount != 0 ? true : false);
+        }catch(err){
+            throw(err);
+        }
+    }
+
+    async createUser(payload, done){
+        const {uid, email, password, name, address, age, prefix, phone} = payload;
+        try{
+            const new_user = user.insertOne({
+                uid:uid,
+                email:email,
+                password:password,
+                name:name,
+                address:address,
+                age:age,
+                prefix:prefix,
+                phone:phone
+            });
+            console.log(`Nuevo usuario: ${new_user}`);
         }catch(err){
             throw(err);
         }
