@@ -15,7 +15,21 @@ const categorys_schema = new mongoose.Schema({
     subcat:{type:[String],required:false,default:[]},
 });
 
+const user_schema = new mongoose.Schema({
+    uid:{type:String, required:true},
+    email:{type:String, required:true},
+    password:{type:String, required:true},
+    name:{type:String, required:true},
+    lastname:{type:String, required:true},
+    address:{type:String, required:true},
+    age:{type:Number, required:true},
+    prefix:{type:Number, required:true},
+    phone:{type:Number, required:true},
+    admin:{type:Boolean, default:false}
+})
+
 export default {
     product : new mongoose.model("products",product_schema),
     category : new mongoose.model("categorys",categorys_schema),
+    user : new mongoose.model("users",user_schema),
 };
