@@ -1,5 +1,5 @@
 import service from "../services/product.service.js";
-import sendInfo from "../subscriptions/res.status.js";
+import {returnError} from "../lib/error.log";
 
 const {
     passProductList,
@@ -13,13 +13,8 @@ const showProductsList = async(req,res)=>{
         await passProductList(null,(products)=>{
             res.status(200).json(products);
         });   
-    }catch(error){
-        console.log(process.env.NODE_ENV && error);
-        res.status(404).json({
-            status_code:404,
-            error_message:"Could not process your request",
-            error_data:error
-        });
+    }catch(err){
+        res.status(404).json(returnError(404,err));
     }
 };
 
@@ -29,13 +24,8 @@ const showProduct = async(req,res)=>{
         await passProductList(pid,(product)=>{
             res.status(200).json(product);
         });
-    }catch(error){
-        console.log(process.env.NODE_ENV && error);
-        res.status(404).json({
-            status_code:404,
-            error_message:"Could not process your request",
-            error_data:error
-        });
+    }catch(err){
+        res.status(404).json(returnError(404,err));
     }
 };
 
@@ -46,13 +36,8 @@ const deleteProduct = async(req,res)=>{
             const {done,data,code} = op_cb;
             res.status(code).json({done,data});
         });
-    }catch(error){
-        console.log(process.env.NODE_ENV && error);
-        res.status(404).json({
-            status_code:404,
-            error_message:"Could not process your request",
-            error_data:error
-        });        
+    }catch(err){
+        res.status(404).json(returnError(404,err));
     }
 };
 
@@ -64,13 +49,8 @@ const updateProduct = async(req,res)=>{
             const {done,data,code} = op_cb;
             res.status(code).json({done,data});
         });
-    }catch(error){
-        console.log(process.env.NODE_ENV && error);
-        res.status(404).json({
-            status_code:404,
-            error_message:"Could not process your request",
-            error_data:error
-        });        
+    }catch(err){
+        res.status(404).json(returnError(404,err));
     }
 };
 
@@ -79,13 +59,8 @@ const addProduct = async(req,res)=>{
         const payload = req.body;
         await addProductToDatabse(payload);
         res.status(200).json({done:true,data:"New product added"});
-    }catch(error){
-        console.log(process.env.NODE_ENV && error);
-        res.status(404).json({
-            status_code:404,
-            error_message:"Could not process your request",
-            error_data:error
-        });        
+    }catch(err){
+        res.status(404).json(returnError(404,err));
     }
 };
 

@@ -1,35 +1,25 @@
+import { returnError } from "../lib/error.log.js";
+
 const showUser = async(req,res)=>{
     try{
         
-    }catch(error){
-        res.status(404).json({
-            status_code:404,
-            error_message:"Could not process your request",
-            error_data:error
-        });
+    }catch(err){
+        res.status(404).json(returnError(404,err));
     }
 };
 
 const updateUser = async(req,res)=>{
     try{
 
-    }catch(error){
-        res.status(404).json({
-            status_code:404,
-            error_message:"Could not process your request",
-            error_data:error
-        });
+    }catch(err){
+        res.status(404).json(returnError(404,err));
     }
 }
 
 const deleteUser = async(req,res)=>{
     try{
-    }catch(error){
-        res.status(404).json({
-            status_code:404,
-            error_message:"Could not process your request",
-            error_data:error
-        });
+    }catch(err){
+        res.status(404).json(returnError(404,err));
     }
 };
 

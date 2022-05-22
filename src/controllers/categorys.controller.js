@@ -1,4 +1,5 @@
 import services from "../services/categorys.service.js";
+import { returnError } from "../lib/error.log.js";
 
 const {
     findCategorys
@@ -10,12 +11,8 @@ const sendCategorys = async(req,res)=>{
             res.status(200).json({done:true,data});
         });       
     }catch(error){
-        console.log(error);
-        res.status(404).json({
-            status_code:404,
-            error_message:"Could not process your request",
-            error_data:error
-        });    
+        console.log(err);
+        res.status(404).json(returnError(404,err));    
     }
 }
 
