@@ -7,6 +7,7 @@ class DAO{
 
     }
 
+    // Categorias
     async fetchProducts(pid,cb){
         try{
             const products = pid ? await product.findOne({pid:pid}).lean(true) : await product.find({}).lean(true)
@@ -57,6 +58,7 @@ class DAO{
         }
     }
 
+    // Categorias
     async fetchCategory(cb){
         try{
             const categorys = await category.find().lean();
@@ -66,6 +68,7 @@ class DAO{
         }
     }
 
+    // Usuarios
     async returnAllUsers(cb){
         try{
             const users = await user.find({}).lean();
