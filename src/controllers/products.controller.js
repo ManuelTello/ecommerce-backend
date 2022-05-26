@@ -1,5 +1,5 @@
 import service from "../services/product.service.js";
-import {returnError} from "../lib/error.log";
+import {returnError} from "../lib/error.log.js";
 
 const {
     passProductList,
