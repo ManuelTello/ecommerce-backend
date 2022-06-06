@@ -25,5 +25,4 @@ app.use("/auth",route_auth);
 app.use("/category",route_category);
 app.use("*",route_error);
 
-
 export default app;
