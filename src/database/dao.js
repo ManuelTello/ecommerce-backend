@@ -7,7 +7,7 @@ class DAO{
 
     }
 
-    // Categorias
+    // Productos
     async fetchProducts(pid,cb){
         try{
             const products = pid ? await product.findOne({pid:pid}).lean(true) : await product.find({}).lean(true)
@@ -97,19 +97,30 @@ class DAO{
     }
 
     async createUser(payload, done){
-        const {uid, email, password, name, address, age, prefix, phone} = payload;
+        const {uid, email, password, name, lastname,address, age, prefix, phone} = payload;
         try{
-            const new_user = user.insertOne({
+            const new_user = await user({
                 uid:uid,
                 email:email,
                 password:password,
                 name:name,
+                lastname:lastname,
                 address:address,
                 age:age,
                 prefix:prefix,
                 phone:phone
             });
-            console.log(`Nuevo usuario: ${new_user}`);
+            const save_user = await new_user.save();
+            done(save_user);
+        }catch(err){
+            throw(err);
+        }
+    }
+
+    async returnPassword(email,cb){
+        try{
+            const hash_pass = await user.find({email:email},{password:1});
+            cb(hash_pass);
         }catch(err){
             throw(err);
         }
