@@ -1,4 +1,4 @@
-import models from "./database.models.js";
+import models from "../models/mongo.models.js";
 
 const {product, category, user} = models;
 

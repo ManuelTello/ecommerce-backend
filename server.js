@@ -1,12 +1,14 @@
-import config from "./src/config/server_cfg.js";
+import config from "./src/config/server.cfg.js";
 import logger from "./src/subscriptions/logger.js";
 import connection from "./src/database/connection.js";
 
-const {port} = config;
-const {connectToMongo,disconnectFromMongo} = connection;
+const { port } = config;
+const { connectToMongo, disconnectFromMongo } = connection;
+
+console.log(database);
 
 const setUpServer = (app)=>{
-    connectToMongo();
+    //connectToMongo();
     const server = app.listen(port,()=>{
         const pid = process.pid;
         console.log(`Server up at port:${port}, pid:${pid}`);

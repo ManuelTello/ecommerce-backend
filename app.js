@@ -3,7 +3,7 @@ import cors from "cors";
 import compression from "compression";
 
 import startUpServer from "./server.js";
-import cors_cfg from "./src/config/cors_cfg.js";
+import cors_cfg from "./src/config/cors.cfg.js";
 import route_products from "./src/routes/products.js";
 import route_profile from "./src/routes/profile.js";
 import route_error from "./src/routes/error.js";

@@ -1,4 +1,4 @@
-import DAO from "../database/dao.js";
+import DAO from "../database/dao/mongo.dao.js";
 import {nanoid} from "nanoid/async";
 
 const dao = new DAO();
